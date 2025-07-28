@@ -33,12 +33,12 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                     src={car.image} />
                 {/* Trạng thái xe (có sẵn/không có sẵn) */}
                 <p className="absolute top-4 left-4 bg-primary/90 text-white text-xs px-2.5 py-1 rounded-full">
-                    {car.isAvaliable ? "Available Now" : "Not Available"}
+                    {car.isAvaliable ? "Hiện có sẵn" : "Không có sẵn"}
                 </p>
                 {/* Giá thuê xe mỗi ngày */}
                 <div className="absolute bottom-4 right-4 bg-black/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg">
                     <span className="font-semibold">{currency}{car.pricePerDay}</span>
-                    <span className="text-sm text-white/80"> / day</span>
+                    <span className="text-sm text-white/80"> / ngày</span>
                 </div>
             </div>
             {/* Phần thông tin chi tiết xe */}
@@ -56,7 +56,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                     {/* Sức chứa */}
                     <div className="flex items-center text-sm text-muted-foreground">
                         <img alt="Seating Capacity Icon" className="h-4 mr-2" src={assets.users_icon} />
-                        <span>{car.seating_capacity} Seats</span>
+                        <span>{car.seating_capacity} Chỗ</span>
                     </div>
                     {/* Loại nhiên liệu */}
                     <div className="flex items-center text-sm text-muted-foreground">

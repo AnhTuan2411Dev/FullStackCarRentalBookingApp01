@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
       style={{ opacity: 1 }}>
       {/* Tiêu đề chính của trang */}
       <h1 className="text-4xl md:text-5xl font-semibold" style={{ opacity: 1, transform: 'none' }}>
-        Luxury cars on Rent
+        Xe sang cho thuê
       </h1>
       {/* Form tìm kiếm xe */}
       <form className="flex flex-col md:flex-row items-start
@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
           {/* Trường chọn địa điểm nhận xe */}
           <div className="flex flex-col items-start gap-2">
             <select required value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)}>
-              <option value="">Pickup Location</option>
+              <option value="">Địa điểm nhận xe</option>
               {/* Render danh sách các thành phố từ cityList */}
               {cityList.map((city) => (
                 <option key={city} value={city}>{city}</option>
@@ -62,19 +62,19 @@ const Hero: React.FC = () => {
             </select>
             {/* Hiển thị địa điểm đã chọn hoặc thông báo */}
             <p className="px-1 text-sm text-gray-500">
-              {pickupLocation ? pickupLocation : 'Please select location'}
+              {pickupLocation ? pickupLocation : 'Vui lòng chọn địa điểm'}
             </p>
           </div>
           {/* Trường nhập ngày nhận xe */}
           <div className="flex flex-col items-start gap-2">
-            <label htmlFor="pickup-date">Pick-up Date</label>
+            <label htmlFor="pickup-date">Ngày nhận xe</label>
             <input id="pickup-date" min={minDate} // Ngày tối thiểu là ngày hiện tại
               className="text-sm text-gray-500" required type="date"
               value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} /> {/* Liên kết với trạng thái và hàm xử lý thay đổi */}
           </div>
           {/* Trường nhập ngày trả xe */}
           <div className="flex flex-col items-start gap-2">
-            <label htmlFor="return-date">Return Date</label>
+            <label htmlFor="return-date">Ngày trả xe</label>
             <input id="return-date" min={minReturnDate} // Ngày tối thiểu được tính toán động
               className="text-sm text-gray-500" required type="date"
               value={returnDate} onChange={(e) => setReturnDate(e.target.value)} /> {/* Liên kết với trạng thái và hàm xử lý thay đổi */}
@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
         {/* Nút tìm kiếm */}
         <button className="flex items-center justify-center gap-1 px-9 py-3 max-sm:mt-4 bg-primary hover:bg-primary-dull text-white rounded-full cursor-pointer" tabIndex={0}>
           <img alt="search" className="brightness-300" src={assets.search_icon} />
-          Search
+          Tìm kiếm
         </button>
       </form>
       {/* Hình ảnh xe chính */}

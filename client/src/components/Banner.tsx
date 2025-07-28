@@ -9,13 +9,13 @@ const Banner = () => {
       {/* Phần nội dung văn bản bên trái */}
       <div className="text-white">
         {/* Tiêu đề */}
-        <h2 className="text-3xl font-medium">Do You Own a Luxury Car?</h2>
+        <h2 className="text-3xl font-medium">Bạn có sở hữu một chiếc xe sang?</h2>
         {/* Đoạn văn bản mô tả */}
-        <p className="mt-2">Monetize your vehicle effortlessly by listing it on CarRental.</p>
+        <p className="mt-2">Kiếm tiền từ chiếc xe của bạn một cách dễ dàng bằng cách niêm yết nó trên CarRental.</p>
         {/* Đoạn văn bản chi tiết hơn */}
-        <p className="max-w-130">We take care of insurance, driver verification and secure payments — so you can earn passive income, stress-free.</p>
+        <p className="max-w-130">Chúng tôi lo liệu bảo hiểm, xác minh tài xế và thanh toán an toàn — để bạn có thể kiếm thu nhập thụ động mà không phải lo lắng.</p>
         {/* Nút "List your car" */}
-        <button className="px-6 py-2 bg-white hover:bg-slate-100 transition-all text-primary rounded-lg text-sm mt-4 cursor-pointer" tabIndex={0}>List your car</button>
+        <button className="px-6 py-2 bg-white hover:bg-slate-100 transition-all text-primary rounded-lg text-sm mt-4 cursor-pointer" tabIndex={0}>Niêm yết xe của bạn</button>
       </div>
       {/* Hình ảnh xe hơi bên phải */}
       <img alt="car" className="max-h-45 mt-10" src={assets.banner_car_image} style={{ opacity: 1, transform: 'none' }} />

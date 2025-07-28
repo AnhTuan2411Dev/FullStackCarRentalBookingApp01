@@ -5,9 +5,9 @@ import { assets } from '../assets/assets'; // Import các tài sản (assets) t�
 const Testimonial = () => {
   // Mảng chứa dữ liệu các lời chứng thực (testimonials)
   const testimonials = [
-    { id: 1, name: "Emma Rodriguez", address: "Barcelona, Spain", image: assets.testimonial_image_1, rating: 5, review: "Tôi đã thuê xe từ nhiều công ty khác nhau, nhưng trải nghiệm với CarRental thật đặc biệt." },
-    { id: 2, name: "John Smith", address: "New York, USA", image: assets.testimonial_image_2, rating: 5, review: "CarRental đã giúp chuyến đi của tôi dễ dàng hơn rất nhiều. Xe được giao ngay tận nơi, và dịch vụ khách hàng thật tuyệt vời!" },
-    { id: 3, name: "Ava Johnson", address: "Sydney, Australia", image: assets.testimonial_image_1, rating: 5, review: "Tôi rất khuyến khích CarRental! Đội xe của họ thật tuyệt vời, và tôi luôn cảm thấy mình nhận được ưu đãi tốt nhất cùng dịch vụ xuất sắc." }
+    { id: 1, name: "Nguyễn Thị Thoa", address: "Hà Nội, Việt Nam", image: assets.testimonial_image_1, rating: 5, review: "Tôi đã thuê xe từ nhiều công ty khác nhau, nhưng trải nghiệm với CarRental thật đặc biệt." },
+    { id: 2, name: "Trần Văn Bình", address: "TP. Hồ Chí Minh, Việt Nam", image: assets.testimonial_image_2, rating: 5, review: "CarRental đã giúp chuyến đi của tôi dễ dàng hơn rất nhiều. Xe được giao ngay tận nơi, và dịch vụ khách hàng thật tuyệt vời!" },
+    { id: 3, name: "Lê Thị Mai", address: "Đà Nẵng, Việt Nam", image: assets.testimonial_image_1, rating: 5, review: "Tôi rất khuyến khích CarRental! Đội xe của họ thật tuyệt vời, và tôi luôn cảm thấy mình nhận được ưu đãi tốt nhất cùng dịch vụ xuất sắc." }
   ];
 
 
@@ -26,7 +26,7 @@ const Testimonial = () => {
         {/* Duyệt qua mảng testimonials và hiển thị từng lời chứng thực */}
         {testimonials.map((testimonial) => (
           // Card của từng lời chứng thực
-          <div key={testimonial.id} className="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500">
+          <div key={testimonial.id} className="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
             {/* Thông tin người đánh giá: ảnh, tên, địa chỉ */}
             <div className="flex items-center gap-3">
               <img className="w-12 h-12 rounded-full" src={testimonial.image} alt={testimonial.name} />
@@ -38,12 +38,12 @@ const Testimonial = () => {
             {/* Hiển thị sao đánh giá */}
             <div className="flex items-center gap-1 mt-4">
               {/* Tạo 5 sao */}
-              {Array(5).fill(0).map((_, index) => (
+              {Array(testimonial.rating).fill(0).map((_, index) => (
                 <img key={index} alt="star-icon" src={assets.star_icon} />
               ))}
             </div>
             {/* Nội dung lời đánh giá */}
-            <p className="text-gray-500 max-w-90 mt-4 font-light">"{testimonial.review}"</p>
+            <p className="text-gray-500 mt-4 font-light flex-grow">"{testimonial.review}"</p>
           </div>
         ))}
       </div>

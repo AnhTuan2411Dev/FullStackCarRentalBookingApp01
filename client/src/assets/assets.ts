@@ -42,7 +42,7 @@ import car_image2 from "./car_image2.png"; // Hình ảnh xe 2
 import car_image3 from "./car_image3.png"; // Hình ảnh xe 3
 import car_image4 from "./car_image4.png"; // Hình ảnh xe 4
 
-export const cityList: string[] = ['New York', 'Los Angeles', 'Houston', 'Chicago']; // Giữ nguyên tên thành phố tiếng Anh vì đây là dữ liệu địa lý
+export const cityList: string[] = ['Hà Nội', 'TP Hồ Chí Minh', 'Đà Nẵng', 'Cần Thơ'];
 
 // Đối tượng chứa tất cả các tài sản (biểu tượng, hình ảnh) được import
 export const assets = {
@@ -130,11 +130,11 @@ interface DummyUserData {
 
 // Dữ liệu người dùng giả (ví dụ: cho mục đích phát triển/thử nghiệm)
 export const dummyUserData: DummyUserData = {
-  "_id": "6847f7cab3d8daecdb517095", // ID người dùng
-  "name": "GreatStack", // Tên người dùng
-  "email": "admin@example.com", // Email người dùng
-  "role": "owner", // Vai trò người dùng
-  "image": user_profile, // Hình ảnh hồ sơ người dùng
+    "_id": "6847f7cab3d8daecdb517095", // ID người dùng
+    "name": "GreatStack", // Tên người dùng
+    "email": "admin@example.com", // Email người dùng
+    "role": "owner", // Vai trò người dùng
+    "image": user_profile, // Hình ảnh hồ sơ người dùng
 };
 
 // Định nghĩa interface cho dữ liệu xe giả
@@ -170,7 +170,7 @@ export const dummyCarData: DummyCarData[] = [
         "fuel_type": "Hybrid", // Loại nhiên liệu
         "transmission": "Bán tự động", // Hộp số
         "pricePerDay": 300, // Giá mỗi ngày
-        "location": "New York", // Địa điểm
+        "location": "Hà Nội", // Địa điểm
         "description": "BMW X5 là một chiếc SUV hạng sang cỡ trung do BMW sản xuất. X5 ra mắt vào năm 1999 là chiếc SUV đầu tiên được sản xuất bởi BMW.", // Mô tả
         "isAvaliable": true, // Có sẵn
         "createdAt": "2025-04-16T07:26:56.215Z", // Thời gian tạo
@@ -187,7 +187,7 @@ export const dummyCarData: DummyCarData[] = [
         "fuel_type": "Diesel", // Loại nhiên liệu
         "transmission": "Thủ công", // Hộp số
         "pricePerDay": 130, // Giá mỗi ngày
-        "location": "Chicago", // Địa điểm
+        "location": "TP Hồ Chí Minh", // Địa điểm
         "description": "Toyota Corolla là một chiếc sedan hạng sang cỡ trung do Toyota sản xuất. Corolla ra mắt vào năm 2008 là chiếc sedan đầu tiên được sản xuất bởi Toyota.", // Mô tả
         "isAvaliable": true, // Có sẵn
         "createdAt": "2025-04-16T08:33:57.993Z", // Thời gian tạo
@@ -204,7 +204,7 @@ export const dummyCarData: DummyCarData[] = [
         "fuel_type": "Hybrid", // Loại nhiên liệu
         "transmission": "Tự động", // Hộp số
         "pricePerDay": 200, // Giá mỗi ngày
-        "location": "Los Angeles", // Địa điểm
+        "location": "Đà Nẵng", // Địa điểm
         "description": "Jeep Wrangler là một chiếc SUV hạng sang cỡ trung do Jeep sản xuất. Wrangler ra mắt vào năm 2003 là chiếc SUV đầu tiên được sản xuất bởi Jeep.", // Mô tả
         "isAvaliable": true, // Có sẵn
         "createdAt": "2025-04-16T08:34:39.592Z", // Thời gian tạo
@@ -221,7 +221,7 @@ export const dummyCarData: DummyCarData[] = [
         "fuel_type": "Diesel", // Loại nhiên liệu
         "transmission": "Bán tự động", // Hộp số
         "pricePerDay": 209, // Giá mỗi ngày
-        "location": "Houston", // Địa điểm
+        "location": "Cần Thơ", // Địa điểm
         "description": "Đây là một chiếc sedan hạng sang cỡ trung do Toyota sản xuất. Corolla ra mắt vào năm 2008 là chiếc sedan đầu tiên được sản xuất bởi Toyota.", // Mô tả
         "isAvaliable": true, // Có sẵn
         "createdAt": "2025-04-17T06:15:47.318Z", // Thời gian tạo

@@ -19,7 +19,7 @@ const FeaturedSection = () => {
       {/* Phần tiêu đề */}
       <div>
         {/* Sử dụng thành phần Title để hiển thị tiêu đề và phụ đề */}
-        <Title title="Featured Cars" subTitle="Explore our selection of premium vehicles available for your next adventure." align="center" />
+        <Title title="Xe Nổi Bật" subTitle="Khám phá bộ sưu tập xe cao cấp của chúng tôi, sẵn sàng cho cuộc phiêu lưu tiếp theo của bạn." align="center" />
       </div>
       {/* Lưới hiển thị các thẻ xe */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-18'>
@@ -41,7 +41,7 @@ const FeaturedSection = () => {
         window.scrollTo(0, 0);
       }}
         className='flex items-center justify-center gap-2 px-6 py-2 border border-borderColor hover:bg-gray-50 rounded-md mt-18 cursor-pointer'>
-        Explore all cars <img src={assets.arrow_icon} /> {/* Icon mũi tên */}
+        Khám phá tất cả xe <img src={assets.arrow_icon} /> {/* Icon mũi tên */}
       </button>
     </div>
   )
