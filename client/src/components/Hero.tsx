@@ -69,15 +69,15 @@ const Hero: React.FC = () => {
           <div className="flex flex-col items-start gap-2">
             <label htmlFor="pickup-date">Pick-up Date</label>
             <input id="pickup-date" min={minDate} // Ngày tối thiểu là ngày hiện tại
-            className="text-sm text-gray-500" required type="date"
-            value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} /> {/* Liên kết với trạng thái và hàm xử lý thay đổi */}
+              className="text-sm text-gray-500" required type="date"
+              value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} /> {/* Liên kết với trạng thái và hàm xử lý thay đổi */}
           </div>
           {/* Trường nhập ngày trả xe */}
           <div className="flex flex-col items-start gap-2">
             <label htmlFor="return-date">Return Date</label>
             <input id="return-date" min={minReturnDate} // Ngày tối thiểu được tính toán động
-            className="text-sm text-gray-500" required type="date"
-            value={returnDate} onChange={(e) => setReturnDate(e.target.value)} /> {/* Liên kết với trạng thái và hàm xử lý thay đổi */}
+              className="text-sm text-gray-500" required type="date"
+              value={returnDate} onChange={(e) => setReturnDate(e.target.value)} /> {/* Liên kết với trạng thái và hàm xử lý thay đổi */}
           </div>
         </div>
         {/* Nút tìm kiếm */}

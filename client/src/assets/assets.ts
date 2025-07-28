@@ -138,7 +138,7 @@ export const dummyUserData: DummyUserData = {
 };
 
 // Định nghĩa interface cho dữ liệu xe giả
-interface DummyCarData {
+export interface DummyCarData {
     _id: string; // ID của xe
     owner: string; // ID chủ sở hữu xe
     brand: string; // Hãng xe
