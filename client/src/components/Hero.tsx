@@ -81,9 +81,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
         {/* Nút tìm kiếm */}
-        <button className="flex items-center justify-center
-        gap-1 px-9 py-3 max-sm:mt-4 bg-primary hover:bg-primary-dull
-        text-white rounded-full cursor-pointer" tabIndex={0}>
+        <button className="flex items-center justify-center gap-1 px-9 py-3 max-sm:mt-4 bg-primary hover:bg-primary-dull text-white rounded-full cursor-pointer" tabIndex={0}>
           <img alt="search" className="brightness-300" src={assets.search_icon} />
           Search
         </button>
