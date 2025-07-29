@@ -18,7 +18,7 @@ const Cars = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search); // Tạo đối tượng URLSearchParams từ chuỗi truy vấn URL
     setFilters({ // Cập nhật state filters
-      location: params.get('location') || '', // Lấy vị trí từ URL hoặc chuỗi rỗng
+      location: params.get('pickupLocation') || '', // Lấy vị trí từ URL hoặc chuỗi rỗng
       pickupDate: params.get('pickupDate') || '', // Lấy ngày nhận xe từ URL hoặc chuỗi rỗng
       returnDate: params.get('returnDate') || '', // Lấy ngày trả xe từ URL hoặc chuỗi rỗng
     });
@@ -116,7 +116,12 @@ const Cars = () => {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4 xl:px-20 max-w-7xl mx-auto">
           {filteredCars.map((car) => (
-            <CarCard key={car._id} car={car} /> // Render CarCard cho mỗi xe
+            <CarCard 
+              key={car._id} 
+              car={car} 
+              pickupDate={filters.pickupDate}
+              returnDate={filters.returnDate}
+            />
           ))}
         </div>
       </div>

@@ -7,12 +7,13 @@ import MyBookings from './pages/MyBookings'
 import Cars from './pages/Cars'
 import CarDetails from './pages/CarDetails'
 import Footer from './components/Footer'
+import { DateProvider } from './context/DateContext'
 
 function App() {
   const [showLogin, setShowLogin] = useState(false)
   const isOwnerPath = useLocation().pathname.startsWith('/owner')
   return (
-    <>
+    <DateProvider>
       {!isOwnerPath && <Navbar setShowLogin={setShowLogin} />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,7 +22,7 @@ function App() {
         <Route path="/car-details/:id" element={<CarDetails />} />
       </Routes>
       <Footer />
-    </>
+    </DateProvider>
   )
 }
 

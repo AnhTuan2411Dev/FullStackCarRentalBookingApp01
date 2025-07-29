@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { assets, dummyCarData, type DummyCarData } from '../assets/assets';
+import { useDateContext } from '../context/DateContext';
 
 // Component Loader cơ bản (có thể được cải thiện sau)
 // Đây là một component đơn giản hiển thị trạng thái tải (loading)
@@ -16,11 +17,19 @@ const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const location = useLocation(); // Sử dụng useLocation để lấy query params
+  
+  // Sử dụng DateContext để lấy và cập nhật ngày tháng
+  const { 
+    pickupDate: contextPickupDate, 
+    returnDate: contextReturnDate, 
+    setPickupDate, 
+    setReturnDate 
+  } = useDateContext();
 
   const [car, setCar] = useState<DummyCarData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [pickupDate, setPickupDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
+  const [localPickupDate, setLocalPickupDate] = useState('');
+  const [localReturnDate, setLocalReturnDate] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +38,7 @@ const CarDetails = () => {
       setCar(foundCar);
     }
 
-    // Lấy ngày từ URL query params
+    // Lấy ngày từ URL query params hoặc context
     const queryParams = new URLSearchParams(location.search);
     const urlPickupDate = queryParams.get('pickupDate');
     const urlReturnDate = queryParams.get('returnDate');
@@ -37,27 +46,54 @@ const CarDetails = () => {
     const today = new Date();
     const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
-    // Đặt ngày mặc định nếu không có trong URL
-    setPickupDate(urlPickupDate || formatDate(today));
-
-    if (urlReturnDate) {
-      setReturnDate(urlReturnDate);
-    } else {
+    // Ưu tiên context, sau đó URL params, cuối cùng là giá trị mặc định
+    const finalPickupDate = contextPickupDate || urlPickupDate || formatDate(today);
+    const finalReturnDate = contextReturnDate || urlReturnDate || (() => {
       const defaultReturn = new Date(today);
       defaultReturn.setDate(today.getDate() + 7);
-      setReturnDate(formatDate(defaultReturn));
+      return formatDate(defaultReturn);
+    })();
+
+    setLocalPickupDate(finalPickupDate);
+    setLocalReturnDate(finalReturnDate);
+
+    // Cập nhật context nếu có giá trị từ URL và context chưa có
+    if (!contextPickupDate && urlPickupDate) {
+      setPickupDate(urlPickupDate);
+    }
+    if (!contextReturnDate && urlReturnDate) {
+      setReturnDate(urlReturnDate);
     }
 
     setLoading(false);
-  }, [id, location.search]);
+  }, [id, location.search, contextPickupDate, contextReturnDate, setPickupDate, setReturnDate]);
 
   const calculateMinReturnDate = () => {
-    if (pickupDate) {
-      const date = new Date(pickupDate);
+    if (localPickupDate) {
+      const date = new Date(localPickupDate);
       date.setDate(date.getDate() + 1);
       return date.toISOString().split('T')[0];
     }
     return new Date().toISOString().split('T')[0]; // Fallback to today
+  };
+
+  const handlePickupDateChange = (newDate: string) => {
+    setLocalPickupDate(newDate);
+    setPickupDate(newDate); // Cập nhật context
+    
+    // Tự động cập nhật ngày trả xe nếu cần thiết
+    if (!localReturnDate || new Date(localReturnDate) <= new Date(newDate)) {
+      const newReturnDate = new Date(newDate);
+      newReturnDate.setDate(newReturnDate.getDate() + 1);
+      const formattedReturnDate = newReturnDate.toISOString().split('T')[0];
+      setLocalReturnDate(formattedReturnDate);
+      setReturnDate(formattedReturnDate); // Cập nhật context
+    }
+  };
+
+  const handleReturnDateChange = (newDate: string) => {
+    setLocalReturnDate(newDate);
+    setReturnDate(newDate); // Cập nhật context
   };
 
   if (loading) {
@@ -134,8 +170,8 @@ const CarDetails = () => {
               id="pickup-date"
               min={minPickupDate}
               type="date"
-              value={pickupDate}
-              onChange={(e) => setPickupDate(e.target.value)}
+              value={localPickupDate}
+              onChange={(e) => handlePickupDateChange(e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -146,8 +182,8 @@ const CarDetails = () => {
               id="return-date"
               min={minReturnDate}
               type="date"
-              value={returnDate}
-              onChange={(e) => setReturnDate(e.target.value)}
+              value={localReturnDate}
+              onChange={(e) => handleReturnDateChange(e.target.value)}
             />
           </div>
           <button className="w-full bg-primary hover:bg-primary-dull transition-all py-3 font-medium text-white rounded-xl cursor-pointer">

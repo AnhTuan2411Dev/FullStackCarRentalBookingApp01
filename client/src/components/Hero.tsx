@@ -1,17 +1,22 @@
 // Import React và hook useState để quản lý trạng thái
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Import các tài nguyên (hình ảnh, danh sách thành phố) từ tệp assets
 import { assets, cityList } from '../assets/assets';
+import { useDateContext } from '../context/DateContext';
 
 // Định nghĩa component Hero
 const Hero: React.FC = () => {
-  // Khai báo trạng thái cho địa điểm nhận xe
-  const [pickupLocation, setPickupLocation] = useState('');
-  // Khai báo trạng thái cho ngày nhận xe
-  const [pickupDate, setPickupDate] = useState('');
-  // Khai báo trạng thái cho ngày trả xe
-  const [returnDate, setReturnDate] = useState('');
+  // Sử dụng DateContext để quản lý trạng thái toàn cục
+  const { 
+    pickupLocation, 
+    pickupDate, 
+    returnDate, 
+    setPickupLocation, 
+    setPickupDate, 
+    setReturnDate 
+  } = useDateContext();
+
   const navigate = useNavigate();
 
   const today = new Date();
@@ -31,6 +36,15 @@ const Hero: React.FC = () => {
 
   const minReturnDate = calculateMinReturnDate();
 
+  // Tự động cập nhật ngày trả xe khi ngày nhận xe thay đổi
+  useEffect(() => {
+    if (pickupDate && (!returnDate || new Date(returnDate) <= new Date(pickupDate))) {
+      const newReturnDate = new Date(pickupDate);
+      newReturnDate.setDate(newReturnDate.getDate() + 1);
+      setReturnDate(newReturnDate.toISOString().split('T')[0]);
+    }
+  }, [pickupDate, returnDate, setReturnDate]);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     // Tạo URL với các tham số tìm kiếm
@@ -39,7 +53,7 @@ const Hero: React.FC = () => {
     if (pickupDate) queryParams.append('pickupDate', pickupDate);
     if (returnDate) queryParams.append('returnDate', returnDate);
 
-    navigate(`/car-list?${queryParams.toString()}`);
+    navigate(`/cars?${queryParams.toString()}`);
   };
 
   return (

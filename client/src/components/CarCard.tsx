@@ -9,21 +9,33 @@ import { useNavigate } from 'react-router-dom';
 // Định nghĩa giao diện cho props của thành phần CarCard
 interface CarCardProps {
     car: DummyCarData; // Dữ liệu của một chiếc xe
+    pickupDate?: string; // Ngày nhận xe (tùy chọn)
+    returnDate?: string; // Ngày trả xe (tùy chọn)
 }
 
 // Thành phần CarCard hiển thị thông tin chi tiết của một chiếc xe
-const CarCard: React.FC<CarCardProps> = ({ car }) => {
+const CarCard: React.FC<CarCardProps> = ({ car, pickupDate, returnDate }) => {
     // Lấy đơn vị tiền tệ từ biến môi trường
     const currency = import.meta.env.VITE_CURRENCY;
 
     const navigate = useNavigate();
 
+    const handleCardClick = () => {
+        // Tạo query params để truyền ngày tháng
+        const queryParams = new URLSearchParams();
+        if (pickupDate) queryParams.append('pickupDate', pickupDate);
+        if (returnDate) queryParams.append('returnDate', returnDate);
+        
+        const queryString = queryParams.toString();
+        const url = queryString ? `/car-details/${car._id}?${queryString}` : `/car-details/${car._id}`;
+        
+        navigate(url);
+        window.scrollTo(0, 0);
+    };
+
     return (
         // Container chính của thẻ xe, với hiệu ứng đổ bóng và di chuột
-        <div onClick={() => {
-            navigate(`/car-details/${car._id}`);
-            window.scrollTo(0, 0);
-        }}
+        <div onClick={handleCardClick}
             className="group rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 transition-all duration-500 cursor-pointer">
             {/* Phần hình ảnh xe */}
             <div className="relative h-48 overflow-hidden">
