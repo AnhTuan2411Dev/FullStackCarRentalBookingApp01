@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import MyBookings from './pages/MyBookings'
 import Cars from './pages/Cars'
 import CarDetails from './pages/CarDetails'
+import Footer from './components/Footer'
 
 function App() {
   const [showLogin, setShowLogin] = useState(false)
@@ -19,6 +20,7 @@ function App() {
         <Route path="/cars" element={<Cars />} />
         <Route path="/car-details/:id" element={<CarDetails />} />
       </Routes>
+      <Footer />
     </>
   )
 }
